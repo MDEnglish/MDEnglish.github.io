@@ -1,0 +1,45 @@
+body{
+	background-color: magenta;
+}
+.cell {
+	text-align: center;
+	border: 3px gray ridge;
+	font: bold 24px Times New Roman,Georgia,Serif;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	color: black;
+	cursor: default;
+}
+
+.tableCell {
+	text-align: center;
+	border: 3px gray ridge;
+	width: 25px;
+	height: 25px;
+	color: black;
+}
+
+.board {
+	background-color: black;
+	background-repeat: repeat;
+	position: absolute;
+	width: 727px;
+	height: 437px;
+	left: 200px;
+
+}
+
+.gamePoints {
+	text-align: center;
+	color:black;
+	width: 180px;
+	height: 60px;
+	font: bold 50px Score Board,Times New Roman,Georgia,Serif;
+}
+
+.button{
+	outline: lightskyblue inset 1px;
+	width: 180px;
+	height: 35px;
+}

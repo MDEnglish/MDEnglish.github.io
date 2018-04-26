@@ -1,0 +1,121 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Cookie Matching Game</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" type="text/css" href="./drag.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+var correctCards = 0;
+$( init );
+
+function init() {
+
+  $('#correctMsg').hide();
+  $('#correctMsg').css( {
+    left: '580px',
+    top: '250px',
+    width: 0,
+    height: 0
+  } );
+
+  correctCards = 0;
+  $('#cardPile').html( '' );
+  $('#cardSlots').html( '' );
+
+  var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+  var terms = ['Number of cookies America consumes in a year', 'Number of Cookies Americans eat in a lifetime', 'Percent of US Households that eat Cookies',
+              'Percent of cookies baked that are Chocolate Chip', 'Max Calories burned by baking', 'Number of Cookies Santa eats on Christmas Eve',
+              'Weight of Worlds Largest Cookie (in lbs)', 'Number of cookies used in largest cookie tower', 'Record for cookies baked in an hour', 'Number of Animals used in Animal Crackers' ];
+
+  shuffle(numbers);
+  shuffle(terms);
+
+  for ( var i=0; i<10; i++ ) {
+    $('<div>' + terms[i] + '</div>').data( 'number', numbers[i] ).attr( 'id', 'card'+numbers[i] ).appendTo( '#cardPile' ).draggable( {
+
+      stack: '#cardPile div',
+      cursor: 'move',
+      revert: true
+    } );
+  }
+
+  var words = [ '2 Billion', '35,000', '95.2', '50', '348', '336,150,386', '40,000', '22,800', '4,695', '54' ];
+  for ( var i=1; i<=10; i++ ) {
+    $('<div>' + words[i-1] + '</div>').data( 'number', i ).appendTo( '#cardSlots' ).droppable( {
+      accept: '#cardPile div',
+      hoverClass: 'hovered',
+      drop: onDrop
+    } );
+  }
+
+}
+
+function onDrop( event, ui ) {
+  var slotNumber = $(this).data( 'number' );
+  var cardNumber = ui.draggable.data( 'number' );
+
+  if ( slotNumber == cardNumber ) {
+    ui.draggable.addClass( 'correct' );
+    ui.draggable.draggable( 'disable' );
+    $(this).droppable( 'disable' );
+    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+    ui.draggable.draggable( 'option', 'revert', false );
+    correctCards++;
+  }
+
+  if ( correctCards == 10 ) {
+    $('#correctMsg').show();
+    localStorage.removeItem("taskNumber");
+    $('#correctMsg').animate( {
+      left: '380px',
+      top: '200px',
+      width: '400px',
+      height: '100px',
+      opacity: 1
+    } );
+  }
+
+
+}
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(.36 * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+  }
+  return a;
+}
+
+
+</script>
+
+</head>
+<body>
+
+<div class="wideBox">
+  <h1>Mason and Tieman's Game</h1>
+  <h2>Match the numbers to the delicious cookie facts</h2>
+</div>
+
+<div id="content">
+
+  <div id="cardPile"> </div>
+  <div id="cardSlots"> </div>
+
+  <div id="correctMsg">
+    <h2>Congratulations!</h2>
+    <button onclick="window.location.href ='./victory.html'">To My Reward</button>
+  </div>
+
+</div>
+
+</body>
+</html>

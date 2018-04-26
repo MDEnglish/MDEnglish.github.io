@@ -1,1 +1,24 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title Screen</title>
+<link rel="stylesheet" href="./TitleStyles.css" />
+<script src="./titlescreen.js"></script>
+<script>
+  window.onload = function() {
+      document.getElementById("my_audio").play();
+  }
+
+</script>
+</head>
+<body>
+  <h1>The Great Cookie Adventure</h1>
+  <p>If you want a cookie, you'll have to work for it. Complete the three challenges to earn one.</p>
+  <div>
+    <button type=button id = "start_button" onclick="window.location.href ='./Same_Game.html'">Start a New Game</button>
+    <button type=button id = "continue_button" onclick="contGame()">Pick Up Where You Left Off</button>
+  </div>
+  <img src="./QuestionCookie.jpg" id = "question"></img>
+  <audio id= "my_audio" src="./smg.mp3" loop = "loop"></audio>
+</body>
+</html>
