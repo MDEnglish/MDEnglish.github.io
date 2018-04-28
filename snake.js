@@ -34,7 +34,7 @@ function init(){
     createMap();
     createSnake();
     createFruit();
-    alert("Use WASD to move!");
+    alert("Feed your snake at least 6 cookies to continue! Use WASD to move.");
 }
 
 /**
@@ -169,7 +169,7 @@ function update(){
     //checks for collisions with fruit
     else if(snakeX == fX && snakeY == fY){
         //adds 4 to the score
-        score+=4;
+        score+=1;
         //creates new fruit, which automatically replaces the old one
         createFruit();
         //adds the set increment to the length of the snake making it longer
