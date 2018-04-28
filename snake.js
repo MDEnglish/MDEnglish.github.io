@@ -34,7 +34,8 @@ function init(){
     createMap();
     createSnake();
     createFruit();
-    alert("Feed your snake at least 6 cookies to continue! Use WASD to move.");
+    alert("Feed your snake at least 6 cookies to continue!");
+    alert("Use WASD to move.");
 }
 
 /**
